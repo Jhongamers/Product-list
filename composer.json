@@ -1,0 +1,8 @@
+{
+    "name": "challange/product-list",
+    "autoload": {
+        "psr-4": {
+            "App\\":"app/"
+        }
+    }
+}

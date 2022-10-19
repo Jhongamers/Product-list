@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <link rel="stylesheet" href="{{BASE}}/app/assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script defer src="{{BASE}}/app/assets/js/scriptList.js"></script>
 </head>
 

@@ -1,11 +1,10 @@
 const typeProd = document.querySelector('#productType');
-const message = document.querySelector('#message');
-const product_form = document.querySelector('#product_form');
 const attribute = document.querySelector('#attribute');
 const height = document.querySelector('#height');
 const width = document.querySelector('#width');
 const length = document.querySelector('#length');
-
+const price = document.querySelector('input[name=price]');
+const base   = $('#baseurl').data("base");
 
 let firstDesc = '';
 
@@ -51,7 +50,7 @@ const onChange = () => {
 }
 
 const DVD = () => {
-        attribute.value =  'Size: '+document.querySelector('#size').value;
+        attribute.value =  'Size: '+document.querySelector('#size').value+' MB';
 }
 const Furniture = () => {
 
@@ -60,7 +59,7 @@ const Furniture = () => {
 
 }
 const Book = () => { 
-        attribute.value = 'Weight: '+document.querySelector('#weight').value;    
+        attribute.value = 'Weight: '+document.querySelector('#weight').value+" KG";    
 }
 
 const choose = () => {
@@ -77,22 +76,36 @@ const choose = () => {
     }
 }
 
-const submit = () => {
-    product_form.addEventListener('submit', (e) => {
-        if (typeProd.value === 'Type') {
-            e.preventDefault();
-            message.classList.remove('d-none');
-            setTimeout(() => {
-                message.classList.add('d-none');
-            }, 3000);
-            console.log(attribute.value);
-        } else {
-          
-           
-            choose();
-            console.log(attribute.value);
 
-        }
+const submit = () => {
+ 
+    $('#product_form').submit((e) => {
+        e.preventDefault();
+        choose();
+        const sku = $('input[name=sku]').val();
+        const name = $('input[name=name]').val();
+        const price = $('input[name=price]').val().concat(' $');
+        console.log(price);
+        const productType = $('select[name=productType]').val();
+        const attribute = $('input[name=attribute]').val();
+            $.ajax({
+                url: base+"/store",
+                type:"post",
+                data:{sku:sku,name:name,price:price,productType:productType,attribute:attribute},
+                dataType:'json',
+                success: (response) =>{
+                    
+                   if(response.success=== true){
+                    window.location.href = base;
+                   }else{
+                    $("#message").removeClass('d-none').html(response.message);
+                   }
+                   console.log(response);
+                }
+               }); 
+         
+          
+     
     });
 }
 

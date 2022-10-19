@@ -44,6 +44,7 @@ class ProductController extends Page{
         public function store()
         { 
             $model = new Product();
+
             $sku = $_POST['sku'];
             $name = $_POST['name'];
             $price = $_POST['price'];
@@ -51,12 +52,15 @@ class ProductController extends Page{
             $attribute = $_POST['attribute'];
          
             if($model->getExist($sku)>0){
-              echo "<h1 style='background-color:red; color:white; text-align:center; border:1px solid #000;'>sku exists please write other</h1>";
-              header( "refresh:2;url=".BASE."/addproduct");
+                $register['success'] = false;
+                $register['message'] = "this is already sku please type another";
+              echo json_encode($register);
+              return;
             }else{
             $retorno = $model->create($sku,$name,$price,$productType,$attribute);
-            
-            header("location:".BASE);
+            $register['success'] = true;
+            echo json_encode($register);
+            return;
         }
             
         }

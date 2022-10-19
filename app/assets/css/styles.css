@@ -78,8 +78,9 @@ form .form-group select{
     background-color: rgb(173, 70, 70);
     font-weight: 600;
     font-size: 1rem;
-    width:30vh;
+    width:20%;
     padding: 0.7rem;
     text-align: center;
     margin: auto;
+    margin-bottom: 1rem;;
 }

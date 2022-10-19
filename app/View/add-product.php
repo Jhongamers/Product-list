@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <link rel="stylesheet" href="{{BASE}}/app/assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script defer src="{{BASE}}/app/assets/js/script.js"></script>
 </head>
 
@@ -30,9 +31,11 @@
     
     </header>
 
-        <div id="message" class="d-none"> please select some option in the option select</div>
+        <div id="message" class="d-none"> please select some option</div>
     <main>
-    <form id="product_form" action="{{BASE}}/store" method="post">
+        <!---{{BASE}}/store --->
+    <form id="product_form" name="formData" method="post">
+    <div id="baseurl" data-base="{{BASE}}"></div>
     <div class="form-group">
         <label>SKU: </label>
         <input type="text" name="sku" id="sku" required>
@@ -43,12 +46,12 @@
     </div>
     <div class="form-group">
         <label>Price: </label>
-        <input type="text" name="price" id="price" required>
+        <input type="number" name="price" id="price" required>
     </div>
     <div class="form-group">
         <label>Type Switcher: </label>
-        <select name="productType" id="productType">
-        <option value="Type">Type Switcher</option>
+        <select name="productType" id="productType" required>
+        <option value="">Type Switcher</option>
         <option value="DVD">DVD</option>
         <option value="Furniture">Furniture</option>
         <option value="Book">Book</option>
